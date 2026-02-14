@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Pickleball & AI</title>
+    <meta name="description" content="Pickleball & AI — An exclusive 3-day retreat combining morning pickleball tournaments with afternoon AI coding workshops. June 9-11, 2026 in Fairfield County, CT. Only 15 spots.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #f59e0b;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+        
+        .hero h1 .ampersand {
+            color: #f59e0b;
+            font-style: italic;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(18px, 2vw, 22px);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #a3a3a3;
+        }
+        
+        .event-details {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0 40px;
+            color: #737373;
+        }
+        
+        .event-details span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-label {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #f59e0b;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .section-title {
+            font-size: clamp(36px, 5vw, 48px);
+            margin-bottom: 20px;
+        }
+        
+        /* Format Section */
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .format-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .format-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .format-card p {
+            color: #a3a3a3;
+            line-height: 1.8;
+        }
+        
+        /* Audience Section */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .audience-card {
+            padding: 30px;
+        }
+        
+        .audience-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .quote {
+            text-align: center;
+            font-size: clamp(24px, 3vw, 36px);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin: 60px 0;
+            color: #f59e0b;
+        }
+        
+        /* Instructor Section */
+        .instructor {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .instructor-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .instructor-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .instructor-name {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .instructor-title {
+            color: #a3a3a3;
+            font-size: 16px;
+        }
+        
+        .instructor-bio {
+            line-height: 1.8;
+            color: #a3a3a3;
+        }
+        
+        .instructor-bio p {
+            margin-bottom: 20px;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .tag {
+            padding: 8px 16px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #f59e0b;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 60px auto;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+        }
+        
+        .pricing-card.featured {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+        }
+        
+        .pricing-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a3a3a3;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-type {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+        
+        .price-note {
+            font-size: 14px;
+            color: #737373;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            list-style: none;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #a3a3a3;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+        }
+        
+        /* Form Section */
+        .form-container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #a3a3a3;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #737373;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #a3a3a3;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #f59e0b;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .event-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .instructor {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">PICKLEBALL & AI</div>
+                <a href="#waitlist" class="cta-button">Join Waitlist</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="badge">● ONLY 15 SPOTS AVAILABLE</div>
+            <h1>Pickleball <span class="ampersand">&</span> AI</h1>
+            <p class="hero-subtitle">Three days of morning competition and afternoon creation.<br>An exclusive retreat where business owners learn to build with AI — not just talk about it.</p>
+            <div class="event-details">
+                <span>📅 June 9-11, 2026</span>
+                <span>📍 Fairfield County, CT</span>
+                <span>👥 15 Attendees</span>
+            </div>
+            <a href="#waitlist" class="cta-button">Apply for the Waitlist</a>
+        </div>
+    </section>
+
+    <section id="format">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Format</div>
+                <h2 class="section-title">What You'll Experience</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #a3a3a3;">Three days designed around a simple rhythm: compete in the morning, create in the afternoon. No panels. No keynotes. Just doing.</p>
+            </div>
+            
+            <div class="format-grid">
+                <div class="format-card">
+                    <div class="time-badge">8:00 AM – 12:00 PM</div>
+                    <div class="section-label">Mornings</div>
+                    <h3>Pickleball Tournament</h3>
+                    <p>Start each day on the court. Competitive round-robin play across all skill levels. The best business conversations happen between points — not in conference rooms.</p>
+                </div>
+                
+                <div class="format-card">
+                    <div class="time-badge">1:00 PM – 6:00 PM</div>
+                    <div class="section-label">Afternoons</div>
+                    <h3>AI Coding Workshops</h3>
+                    <p>Hands-on building sessions. You'll use Replit, Lovable, Cursor, Supabase, Claude, and AI agents to build real tools for your business. Leave with working software, not slide decks.</p>
+                </div>
+                
+                <div class="format-card">
+                    <div class="section-label">Evenings</div>
+                    <h3>Dinners & Connection</h3>
+                    <p>Dinners and unstructured time with the group. The relationships you build here will be worth more than any workshop. Accommodation is on your own — we'll provide curated hotel recommendations near Westport.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="audience">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Audience</div>
+                <h2 class="section-title">Who This Is For</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #a3a3a3;">This is not another conference. It's a working retreat for 15 business owners who want to stop outsourcing their AI strategy and start building it themselves.</p>
+            </div>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>You run a business</h3>
+                    <p style="color: #a3a3a3;">You're a founder, operator, or owner — not a developer. You want to build tools for your business, not become a full-time engineer.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <h3>You want to actually build</h3>
+                    <p style="color: #a3a3a3;">You're tired of AI conferences that are all talk. You want to leave with working software and the skills to keep building.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <h3>You believe in leverage</h3>
+                    <p style="color: #a3a3a3;">You understand that AI is the biggest leverage opportunity in a generation. You want a ruthlessly pragmatic approach — not theory.</p>
+                </div>
+            </div>
+            
+            <div class="quote">"Stop hiring developers. Start building yourself."</div>
+        </div>
+    </section>
+
+    <section id="instructor">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Your Instructor</div>
+            </div>
+            
+            <div class="instructor">
+                <div class="instructor-header">
+                    <div class="instructor-avatar">JM</div>
+                    <h3 class="instructor-name">Jon Matzner</h3>
+                    <p class="instructor-title">Founder of Sagan · Host of Lazy Leverage</p>
+                </div>
+                
+                <div class="instructor-bio">
+                    <h3 style="margin-bottom: 20px; text-align: center;">A practitioner, not a theorist</h3>
+                    
+                    <p>Jon Matzner is the founder of <strong>Sagan</strong>, a talent recruitment and staffing company that connects businesses with remote professionals from Latin America. He's built and scaled real companies — not just talked about it on stage.</p>
+                    
+                    <p>Through his <strong>Lazy Leverage</strong> podcast and newsletter, Jon teaches a ruthlessly pragmatic approach to AI adoption. His frameworks — like "Stamping the Drawings" (using AI to create detailed specs before building) and applying the Theory of Constraints to AI — have helped hundreds of business owners move from AI-curious to AI-competent.</p>
+                    
+                    <p>Jon teaches business owners to code and build with tools like Replit, Lovable, Cursor, Supabase, Claude, and AI agents. His approach is simple: you don't need to become a developer. You need to become dangerous enough to build what your business actually needs.</p>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Sagan Founder</span>
+                    <span class="tag">Lazy Leverage Host</span>
+                    <span class="tag">Crane Contributor</span>
+                    <span class="tag">AI Practitioner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Investment</div>
+                <h2 class="section-title">Pricing</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #a3a3a3;">Three days of direct access to Jon. Hands-on workshops. A curated group of 15. This isn't a conference — it's an investment in your ability to build.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <div class="pricing-label">Member Rate</div>
+                    <div class="pricing-type">Sagan & Crane Members</div>
+                    <div class="price">$1,500</div>
+                    <div class="price-note">Per person</div>
+                    <ul class="features">
+                        <li>3 days of workshops & tournament</li>
+                        <li>Direct access to Jon</li>
+                        <li>Curated group of 15</li>
+                        <li>Hotel recommendations provided</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-label">Non-Members</div>
+                    <div class="pricing-type">All Business Owners</div>
+                    <div class="price">$5,000</div>
+                    <div class="price-note">Per person</div>
+                    <ul class="features">
+                        <li>Everything in Member Rate</li>
+                        <li>Open to all business owners</li>
+                        <li>Priority consideration for future events</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: #737373; max-width: 700px; margin: 0 auto;">Accommodation not included. We'll provide curated hotel recommendations near Westport, CT. Pricing keeps the room quality high — this is 15 people, not 500.</p>
+        </div>
+    </section>
+
+    <section id="waitlist">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Limited to 15</div>
+                <h2 class="section-title">Join the Waitlist</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #a3a3a3;">Spots are limited and application-based. Submit your interest below and Jon will personally review every application.</p>
+            </div>
+            
+            <div class="form-container">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="you@company.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="company" placeholder="Your company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select name="member" required>
+                            <option value="">Are you a Sagan or Crane member?</option>
+                            <option value="yes">Yes — I'm a member</option>
+                            <option value="no">No — I'm not a member</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tell us about the tools, automations, or products you want to create..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Apply for the Waitlist</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.lazyleveragepodcast.com" target="_blank">Lazy Leverage Podcast</a>
+                <a href="https://www.sagan.com" target="_blank">Sagan</a>
+            </div>
+            <p>&copy; 2026 Pickleball & AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
